@@ -168,3 +168,30 @@ make
 
 .Image caption
 image::abi.png[I am the image alt text.]
+
+
+== SIKIŞTIRMA ORANLARI
+
+* model.pcd
+
+.Image caption
+image::model.png[I am the image alt text.]
+
+
+
+* room_scan1.pcd
+
+.Image caption
+image::room_scan1.png[I am the image alt text.]
+
+
+* samp23-utm-ground.pcd
+
+.Image caption
+image::samp23-utm-ground.png[I am the image alt text.]
+
+
+* ism_test_cat.pcd 
+
+.Image caption
+image::ism_test_cat.png[I am the image alt text.]
