@@ -1,5 +1,15 @@
 # PCL
 
+== PCL(Point Cloud Library)
+
+Nokta Bulutu Kütüphanesi ( PCL ), 2D / 3D görüntü ve nokta bulut işlemesi için bağımsız ve geniş çaplı, açık bir projedir. PCL, BSD lisansı şartları altında serbest bırakılır ve bu nedenle ticari ve araştırma amaçlı kullanım için ücretsizdir. Bu proje Filtreleme, özellik tahmini, yüzeyi yeniden yapılandırma, model uydurma ve segmentasyon gibi işlemleri yapabilen bir çok algoritma içerir. 
+
+PCL, çapraz platform olup, Linux, MacOS, Windows ve Android / iOS üzerinde başarıyla derlenmiş ve konuşlandırılmıştır. Gelişimi basitleştirmek için, PCL ayrı olarak derlenebilen daha küçük kod kütüphanelerine ayrılmıştır. Bu sayede işlem karmaşıklıkları giderilmiş olur.  
+
+.Image caption
+image::pcl_dependency_graph2.png[I am the image alt text.]
+
+
 
 == PCL kütüphanesi octree kodu çalıştırma
 
