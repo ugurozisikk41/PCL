@@ -1,5 +1,6 @@
 # PCL
 
+
 == PCL(Point Cloud Library)
 
 Nokta Bulutu Kütüphanesi ( PCL ), 2D / 3D görüntü ve nokta bulut işlemesi için bağımsız ve geniş çaplı, açık bir projedir. PCL, BSD lisansı şartları altında serbest bırakılır ve bu nedenle ticari ve araştırma amaçlı kullanım için ücretsizdir. Bu proje Filtreleme, özellik tahmini, yüzeyi yeniden yapılandırma, model uydurma ve segmentasyon gibi işlemleri yapabilen bir çok algoritma içerir. 
@@ -9,6 +10,100 @@ PCL, çapraz platform olup, Linux, MacOS, Windows ve Android / iOS üzerinde ba�
 .Image caption
 image::pcl_dependency_graph2.png[I am the image alt text.]
 
+Hem kullanımı hem de gelişimini basitleştirmek için, PCL bir dizi modüler kütüphaneye ayrılmıştır. PCL'deki en önemli modüller aşağıda gösterilmiştir.
+
+* Filtreler
+
+* kdtree
+
+* octree
+
+* Tanıma
+
+* Görselleştirme
+
+== PCL_octree
+
+Pcl_octree kütüphanesi nokta bulutu verilerinden hiyerarşik bir ağaç veri yapısını oluşturmak için etkili bir yöntem sağlar. Her düğüm sekiz çocuğa sahip olabilir ya da hiçbir çocuğu olmayabilir. Kök düğüm tüm noktaları kapsülleyen bir kübik sınırlama kutusu tanımlar. Her ağaç seviyesinde bu alan 2 faktörüne bölünür ve vokselin derinliği artar.
+
+Pcl_octree uygulama böyle "Voksel Arama içindeki Komşuları”, ‘K Yakın Komşu Arama’ ve ‘Radius Arama içindeki komşular’ olarak verimli, en yakın komşu arama rutinleri sağlar. Otomatik olarak nokta veri setine onun boyut ayarlar. Yaprak düğüm sınıflarının kümesi Boşluk "doluluk" ve "voksel başına punto yoğunluğu" gibi ek işlevsellik sağlamak Seri hale getirme ve serisini kaldırma işlevleri, oktree yapısını ikili bir biçimde kodlamak için olanak sağlar Ayrıca, bir bellek havuzu uygulaması pahalı bellek ayırma ve deallocation işlemlerini azaltır Oktristlerin yüksek oranda oluşturulması gereken senaryolar.
+
+
+== PCL_octree Sınıfları
+
+* class  	Pcl :: octree :: Octree2BufBase <LeafContainerT, BranchContainerT>
+ 
+* class  	Pcl :: octree :: OctreeBase <LeafContainerT, BranchContainerT>
+ 
+* class  	Pcl :: octree :: OctreeIteratorBase <OctreeT>
+ 	 
+* class  	Pcl :: octree :: OctreeDepthFirstIterator <OctreeT>
+ 	 
+* class  	Pcl :: octree :: OctreeBreadthFirstIterator <OctreeT>
+ 	 
+* class     Pcl :: octree :: OctreeLeafNodeIterator <OctreeT>
+ 
+* class   	Pcl :: octree :: OctreePointCloud <PointT, LeafContainerT, BranchContainerT, OctreeT>
+ 
+* class  	Pcl :: octree :: OctreePointCloudAdjacency <PointT, LeafContainerT, BranchContainerT>
+
+* class  	Pcl :: octree :: OctreePointCloudChangeDetector <PointT, LeafContainerT, BranchContainerT>
+ 
+* class 	Pcl :: octree :: OctreePointCloudDensity <PointT, LeafContainerT, BranchContainerT>
+ 
+* class  	Pcl :: octree :: OctreePointCloudOccupancy <PointT, LeafContainerT, BranchContainerT>
+ 
+* class  	Pcl :: octree :: OctreePointCloudPointVector <PointT, LeafContainerT, BranchContainerT, OctreeT>
+ 
+* class 	Pcl :: octree :: OctreePointCloudSinglePoint <PointT, LeafContainerT, BranchContainerT, OctreeT>
+ 
+* class 	Pcl :: octree :: OctreePointCloudVoxelCentroid <PointT, LeafContainerT, BranchContainerT>
+ 
+* class  	Pcl :: octree :: OctreePointCloudSearch <PointT, LeafContainerT, BranchContainerT> :: prioBranchQueueEntry
+ 
+* class  	Pcl :: octree :: OctreePointCloudSearch <PointT, LeafContainerT, BranchContainerT> :: prioPointQueueEntry
+ 
+* class 	Pcl :: octree :: OctreePointCloudSearch <PointT, LeafContainerT, BranchContainerT>
+
+
+
+== Point Cloud Compression
+
+http://pointclouds.org/documentation/tutorials/compression.php
+
+Nokta bulutları, mesafe, renk, normaller vb. Gibi ek bilgilerle ilişkili üç boyutlu noktaları tanımlayan büyük veri setlerinden oluşur. Ayrıca, yüksek oranda oluşturulabilirler ve dolayısıyla önemli miktarda bellek kaynağı işgal edebilirler. Nokta bulutlarının hız sınırlı iletişim kanalları üzerinden depolanması veya iletilmesi gerektiğinde, bu tür verileri sıkıştırmaya yönelik yöntemler son derece ilginç hale gelir. Point Cloud Library, nokta bulutu sıkıştırma işlevselliği sağlar. Mevcut olmayan nokta referansları, nokta boyutu, çözünürlüğü, yoğunluğu ve / veya nokta sıralamasını değiştirerek karakterize edilen "örgütsüz" nokta bulutları da dahil olmak üzere her türlü nokta bulutunun kodlanmasına izin verir. Dahası, altta sekizli veri yapısı, nokta bulutu verilerini çeşitli kaynaklardan verimli bir şekilde birleştirmeyi sağlar.
+
+
+==== Sıkıştırma Profilleri:
+
+Sıkıştırma profilleri, PCL nokta bulutu kodlayıcı için parametre setlerini tanımlar. OpenNI kaptöründen alınan ortak nokta bulutlarının sıkıştırılması için optimize edilmiştir. Kod çözücünün kodlama sırasında kullanılan yapılandırmayı algılar ve benimser şekilde parametreleştirilmesi gerekmez. Aşağıdaki sıkıştırma profilleri mevcuttur:
+
+
+* LOW_RES_ONLINE_COMPRESSION_WITHOUT_COLOR 1 kübik santimetre çözünürlük, renk yok, hızlı çevrimiçi kodlama
+* LOW_RES_ONLINE_COMPRESSION_WITH_COLOR 1 kübik santimetre çözünürlük, renkli, hızlı çevrimiçi kodlama
+* MED_RES_ONLINE_COMPRESSION_WITHOUT_COLOR 5 kübik milimetre çözünürlük, renk yok, hızlı çevrimiçi kodlama
+* MED_RES_ONLINE_COMPRESSION_WITH_COLOR 5 kübik milimetre çözünürlük, renkli, hızlı çevrimiçi kodlama
+* HIGH_RES_ONLINE_COMPRESSION_WITHOUT_COLOR 1 kübik milimetre çözünürlük, renk yok, hızlı çevrimiçi kodlama
+* HIGH_RES_ONLINE_COMPRESSION_WITH_COLOR 1 kübik milimetre çözünürlük, renkli, hızlı çevrimiçi kodlama
+* LOW_RES_OFFLINE_COMPRESSION_WITHOUT_COLOR 1 kübik santimetre çözünürlük, renk yok, verimli çevrimdışı kodlama
+* LOW_RES_OFFLINE_COMPRESSION_WITH_COLOR 1 santimetre küp çözünürlük, renk, verimli çevrimdışı kodlama
+* MED_RES_OFFLINE_COMPRESSION_WITHOUT_COLOR 5 kübik milimetre çözünürlük, renk yok, verimli çevrimdışı kodlama
+* MED_RES_OFFLINE_COMPRESSION_WITH_COLOR 5 kübik milimetre çözünürlük, renk, verimli çevrimdışı kodlama
+* HIGH_RES_OFFLINE_COMPRESSION_WITHOUT_COLOR 1 kübik milimetre çözünürlük, renk yok, verimli çevrimdışı kodlama
+* HIGH_RES_OFFLINE_COMPRESSION_WITH_COLOR 1 kübik milimetre çözünürlük, renk, verimli çevrimdışı kodlama
+* MANUAL_CONFIGURATION gelişmiş parametrizasyon için manuel yapılandırmayı etkinleştirir
+
+
+==== Gelişmiş parametrizasyon şu şekilde açıklanmaktadır:
+
+* CompressionProfile_arg : Bu parametre, gelişmiş parametrizasyonu etkinleştirmek için MANUAL_CONFIGURATION olarak ayarlanmalıdır.
+* ShowStatistics_arg : Sıkıştırma ile ilgili istatistikleri stdout'a yazdır.
+* PointResolution_arg : Nokta koordinatları için kodlama hassasiyetini tanımlayın. Bu parametre algılayıcı gürültünün altında bir değere ayarlanmalıdır.
+* OctreeResolution_arg : Bu parametre dağıtılan sekizliğin voksel boyutunu tanımlar. Daha düşük bir voksel çözünürlüğü daha hızlı sıkıştırmayı, ancak sıkıştırma performansını düşürmeyi sağlar. Bu, yüksek çerçeve / güncelleme oranları ile sıkıştırma etkinliği arasında bir dengeyi sağlar.
+* DoVoxelGridDownDownSampling_arg : Etkinleştirilirse yalnızca hiyerarşik oktree veri yapısı kodlanır. Kod çözücü, voksel merkezlerde noktalar üretti. Bu şekilde, yüksek bulanıklık performansı sağlanırken nokta bulutları sıkıştırma sırasında aşağı örneklenir.
+* IFrameRate_arg : Nokta bulutu sıkıştırma düzeni puan bulutlarını farklı şekilde kodlar. Bu şekilde, gelen nokta bulutu ile daha önce kodlanmış pointcloud arasındaki farklar, maksimum sıkıştırma performansını arşivlemek için kodlanır. IFrameRate_arg gelen nokta bulutu olan en akışındaki çerçeve hızını belirtmek için kullanılır değildir (video kodlama I / P-çerçeveleri benzeri) diferansiyel olarak kodlanır.
+* DoColorEncoding_arg : Bu seçenek renk bileşeni kodlamayı etkinleştirir.
+* ColorBitResolution_arg : Bu parametre, kodlanacak renk bileşeni başına bit miktarını tanımlar.
 
 
 == PCL kütüphanesi octree kodu çalıştırma
