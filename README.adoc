@@ -7,6 +7,14 @@ Nokta Bulutu Kütüphanesi ( PCL ), 2D / 3D görüntü ve nokta bulut işlemesi 
 
 PCL, çapraz platform olup, Linux, MacOS, Windows ve Android / iOS üzerinde başarıyla derlenmiş ve konuşlandırılmıştır. Gelişimi basitleştirmek için, PCL ayrı olarak derlenebilen daha küçük kod kütüphanelerine ayrılmıştır. Bu sayede işlem karmaşıklıkları giderilmiş olur.  
 
+
+== PCL Kütüphanesi kim tarafından destekleniyor? 
+
+ We are financially supported by a consortium of commercial companies, with our own non-profit organization, Open Perception. We would also like to thank individual donors and contributors that have been helping the project. Who is financially supporting PCL?
+The project is financially supported by Open Perception, Willow Garage, NVidia, Google (GSOC 2011,2012), Toyota, Trimble, Urban Robotics, Honda Research Institute, Sandia Intelligent Systems and Robotics, Dinast, Optronic, Velodyne, Spectrolab, Fotonic, Leica Geosystems, National Institute of Standards and Technology, Southwest Research Institute, Ocular Robotics, TetraVue, Aptina, Intel, and REMAP UCLA. We would also like to thank and acknowledge the support of the Ministry of Knowledge and Economy (MKE) from South Korea, who has generously awarded PCL with the First Prize at the Open Source Software World Challenge in 2011.
+
+
+
 .Image caption
 image::pcl_dependency_graph2.png[I am the image alt text.]
 
@@ -22,11 +30,29 @@ Hem kullanımı hem de gelişimini basitleştirmek için, PCL bir dizi modüler 
 
 * Görselleştirme
 
+
+
+== What is a Point Cloud?
+A point cloud is a data structure used to represent a collection of multi-dimensional points and is commonly used to represent three-dimensional data. In a 3D point cloud, the points usually represent the X, Y, and Z geometric coordinates of an underlying sampled surface. When color information is present (see the figures below), the point cloud becomes 4D.
+
+
+== PCL Yükleme 
+
+
+http://pointclouds.org/downloads/linux.html
+
+
+
+
+
 == PCL_octree
+
+http://docs.pointclouds.org/trunk/group__octree.html
+
 
 Pcl_octree kütüphanesi nokta bulutu verilerinden hiyerarşik bir ağaç veri yapısını oluşturmak için etkili bir yöntem sağlar. Her düğüm sekiz çocuğa sahip olabilir ya da hiçbir çocuğu olmayabilir. Kök düğüm tüm noktaları kapsülleyen bir kübik sınırlama kutusu tanımlar. Her ağaç seviyesinde bu alan 2 faktörüne bölünür ve vokselin derinliği artar.
 
-Pcl_octree uygulama böyle "Voksel Arama içindeki Komşuları”, ‘K Yakın Komşu Arama’ ve ‘Radius Arama içindeki komşular’ olarak verimli, en yakın komşu arama rutinleri sağlar. Otomatik olarak nokta veri setine onun boyut ayarlar. Yaprak düğüm sınıflarının kümesi Boşluk "doluluk" ve "voksel başına punto yoğunluğu" gibi ek işlevsellik sağlamak Seri hale getirme ve serisini kaldırma işlevleri, oktree yapısını ikili bir biçimde kodlamak için olanak sağlar Ayrıca, bir bellek havuzu uygulaması pahalı bellek ayırma ve deallocation işlemlerini azaltır Oktristlerin yüksek oranda oluşturulması gereken senaryolar.
+Pcl_octree uygulaması "Voksel Arama içindeki Komşuları”, ‘K Yakın Komşu Arama’ ve ‘Radius Arama içindeki komşular’ gibi yakın komşu arama rutinlerine verimli çözüm sunar. Otomatik olarak nokta veri setine göre kendi boyutunu ayarlar. Yaprak düğüm sınıflarının kümesi Boşluk "doluluk" ve "voksel başına nokta yoğunluğu" gibi ek işlevsellik sağlamaktır. Seri hale getirme ve serisini kaldırma işlevleri, oktree yapısını ikili bir biçimde kodlamak için olanak sağlar. Ayrıca, bir bellek havuzu uygulaması pahalı bellek ayırma ve deallocation işlemlerini azaltır Oktristlerin yüksek oranda oluşturulması gereken senaryolar.
 
 
 == PCL_octree Sınıfları
@@ -71,6 +97,9 @@ Pcl_octree uygulama böyle "Voksel Arama içindeki Komşuları”, ‘K Yakın K
 
 http://pointclouds.org/documentation/tutorials/compression.php
 
+Point clouds consist of huge data sets describing three dimensional points associated with additional information such as distance, color, normals, etc. Additionally, they can be created at high rate and therefore occupy a significant amount of memory resources. Once point clouds have to be stored or transmitted over rate-limited communication channels, methods for compressing this kind of data become highly interesting. The Point Cloud Library provides point cloud compression functionality. It allows for encoding all kinds of point clouds including “unorganized” point clouds that are characterized by non-existing point references, varying point size, resolution, density and/or point ordering. Furthermore, the underlying octree data structure enables to efficiently merge point cloud data from several sources.
+  
+  
 Nokta bulutları, mesafe, renk, normaller vb. Gibi ek bilgilerle ilişkili üç boyutlu noktaları tanımlayan büyük veri setlerinden oluşur. Ayrıca, yüksek oranda oluşturulabilirler ve dolayısıyla önemli miktarda bellek kaynağı işgal edebilirler. Nokta bulutlarının hız sınırlı iletişim kanalları üzerinden depolanması veya iletilmesi gerektiğinde, bu tür verileri sıkıştırmaya yönelik yöntemler son derece ilginç hale gelir. Point Cloud Library, nokta bulutu sıkıştırma işlevselliği sağlar. Mevcut olmayan nokta referansları, nokta boyutu, çözünürlüğü, yoğunluğu ve / veya nokta sıralamasını değiştirerek karakterize edilen "örgütsüz" nokta bulutları da dahil olmak üzere her türlü nokta bulutunun kodlanmasına izin verir. Dahası, altta sekizli veri yapısı, nokta bulutu verilerini çeşitli kaynaklardan verimli bir şekilde birleştirmeyi sağlar.
 
 
